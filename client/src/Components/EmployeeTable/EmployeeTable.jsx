@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
+import FilterEmployee from "../FilterEmployee/FilterEmployee";
 
-const EmployeeTable = ({ employees, onDelete }) => (
+const EmployeeTable = ({ employees, onDelete, set, emp }) => (
   <div className="EmployeeTable">
+    <FilterEmployee setFilter={set} employees={emp} />
     <table>
       <thead>
         <tr>
