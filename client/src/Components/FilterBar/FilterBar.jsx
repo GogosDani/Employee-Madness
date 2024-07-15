@@ -1,7 +1,8 @@
 import levels from "../../../../server/populate/levels.json"
 import positions from "../../../../server/populate/positions.json"
 
-export default function FilterBar({ setLevel, setPosition }) {
+
+export default function FilterBar({ setLevel, setPosition, setSort }) {
 
     function setFilter(e, filterType) {
         filterType === "level" ? (
@@ -22,6 +23,14 @@ export default function FilterBar({ setLevel, setPosition }) {
             <select id="position" onChange={(e) => setFilter(e, "position")}>
                 <option value=""> Every position </option>
                 {positions.map(position => <option key={position}> {position} </option>)}
+            </select>
+            <label htmlFor="sort"> Sort by: </label>
+            <select id="sort" onChange={(e) => setSort(e.target.value)}>
+                <option> first name </option>
+                <option> middle name </option>
+                <option> last name </option>
+                <option> level </option>
+                <option> position </option>
             </select>
         </div>
     )
