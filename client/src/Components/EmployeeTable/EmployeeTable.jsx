@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
 
-const EmployeeTable = ({ employees, onDelete}) => (
+const EmployeeTable = ({ employees, onDelete }) => (
   <div className="EmployeeTable">
     <table>
       <thead>

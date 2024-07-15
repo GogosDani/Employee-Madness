@@ -1,0 +1,28 @@
+import levels from "../../../../server/populate/levels.json"
+import positions from "../../../../server/populate/positions.json"
+
+export default function FilterBar({ setLevel, setPosition }) {
+
+    function setFilter(e, filterType) {
+        filterType === "level" ? (
+            setLevel(e.target.value)
+        ) : (
+            setPosition(e.target.value)
+        )
+    }
+
+    return (
+        <div>
+            <label htmlFor="level"> Filter by Level </label>
+            <select id="level" onChange={(e) => setFilter(e, "level")}>
+                <option value=""> Every level </option>
+                {levels.map(level => <option key={level}> {level} </option>)}
+            </select>
+            <label htmlFor="position"> Filter by Position </label>
+            <select id="position" onChange={(e) => setFilter(e, "position")}>
+                <option value=""> Every position </option>
+                {positions.map(position => <option key={position}> {position} </option>)}
+            </select>
+        </div>
+    )
+}
