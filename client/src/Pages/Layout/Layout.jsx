@@ -2,17 +2,29 @@ import { Outlet, Link } from "react-router-dom";
 
 import "./Layout.css";
 
-const Layout = () => (
+const Layout = (props) => (
   <div className="Layout">
     <nav>
       <ul>
         <li className="grow">
-          <Link to="/">Employees</Link>
+          {props.page === "employee" ? (
+            <Link to="/">Employees</Link>
+          ) : (
+            <Link to="/equipments">Equipments</Link>
+          )}
+
         </li>
         <li>
-          <Link to="/create">
-            <button type="button">Create Employee</button>
-          </Link>
+          {props.page === "employee" ? (
+            <Link to="/create">
+              <button type="button">Create Employee</button>
+            </Link>
+          ) : (
+            <Link to="/equipments/create">
+              <button type="button">Create Equipment</button>
+            </Link>
+          )}
+
         </li>
       </ul>
     </nav>

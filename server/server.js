@@ -58,6 +58,42 @@ app.delete("/api/employees/:id", async (req, res, next) => {
   }
 });
 
+
+// ------------------------------------------------------------------------------
+
+// equipments CRUD
+
+app.post("/api/equipments", async (req, res, next) => {
+  try {
+    const equipment = req.body
+    const newEquipment = await EquipmentModel.create(equipment)
+    return res.status(200).json(newEquipment)
+  } catch (err) {
+    return next(err)
+  }
+})
+
+app.get("/api/equipments", async (req, res, next) => {
+  try {
+    const equipments = await EquipmentModel.find({})
+    return res.json(equipments)
+  } catch (err) {
+    return next(err)
+  }
+
+
+})
+
+app.delete("/api/equipments/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id
+    const deleted = await EquipmentModel.findByIdAndDelete(id)
+    return res.json(deleted)
+  } catch (err) {
+    return next(err)
+  }
+})
+
 const main = async () => {
   await mongoose.connect(MONGO_URL);
 

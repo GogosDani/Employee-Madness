@@ -7,15 +7,18 @@ import ErrorPage from "./Pages/ErrorPage";
 import EmployeeList from "./Pages/EmployeeList";
 import EmployeeCreator from "./Pages/EmployeeCreator";
 import EmployeeUpdater from "./Pages/EmployeeUpdater";
+import EquipmentList from "./Pages/EquipmentList";
+import EquipmentCreator from "./Pages/EquipmentCreator";
 
 import "./main.css";
 import TableTest from "./Pages/TableTest";
 import FormTest from "./Pages/FormTest";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <Layout page={"employee"} />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -40,12 +43,30 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "equipments",
+    element: <Layout page={"equipment"} />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <EquipmentList />
+      },
+      {
+        path: "/equipments/create",
+        element: <EquipmentCreator />
+      },
+      {
+        path: "/equipments/delete"
+      }
+    ]
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+
+  <RouterProvider router={router} />
+
 );
 
