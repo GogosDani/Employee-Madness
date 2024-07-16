@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import EquipmentTable from "../Components/EquipmentTable/EquipmentTable"
 
-async function deleteEquipment(id) {
+async function deleteEquipmentRequest(id) {
     const response = await fetch(`/api/equipments/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -26,6 +26,11 @@ export default function EquipmentList() {
         }
         getEquipments()
     }, [])
+
+    function deleteEquipment(id) {
+        deleteEquipmentRequest(id)
+        setEquipments(prev => prev.filter(item => item._id !== id))
+    }
 
     return (
         <EquipmentTable equipments={equipments} onDelete={deleteEquipment} />

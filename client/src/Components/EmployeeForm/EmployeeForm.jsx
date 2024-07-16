@@ -61,7 +61,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
           {employee ? "Update Employee" : "Create Employee"}
         </button>
 
-        <button type="button" onClick={onCancel}>
+        <button type="button" onClick={onCancel} >
           Cancel
         </button>
       </div>

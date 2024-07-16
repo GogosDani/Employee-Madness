@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { Link } from "react-router-dom"
 
 export default function EquipmentTable({ equipments, onDelete }) {
 
@@ -20,7 +21,10 @@ export default function EquipmentTable({ equipments, onDelete }) {
                                 <td> {item.type} </td>
                                 <td> {item.ammount} </td>
                                 <td>
-                                    <button> Edit </button>
+                                    <Link to={`/equipments/edit/${item._id}`}>
+                                        <button> Edit </button>
+                                    </Link>
+
                                     <button type="button" onClick={(e) => onDelete(item._id)}> Delete </button>
                                 </td>
 
