@@ -10,6 +10,7 @@ const EmployeeTable = ({ employees, onDelete }) => (
           <th>Level</th>
           <th>Position</th>
           <th />
+          <th> Present </th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,9 @@ const EmployeeTable = ({ employees, onDelete }) => (
               <button type="button" onClick={() => onDelete(employee._id)}>
                 Delete
               </button>
+            </td>
+            <td>
+              <input type="checkbox" />
             </td>
           </tr>
         ))}
