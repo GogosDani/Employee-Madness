@@ -20,6 +20,7 @@ export default function EquipmentCreator() {
             const data = await response.json()
             console.log("succeed!")
             console.log(data)
+            navigate("/equipments")
         }
     }
 
