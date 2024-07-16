@@ -59,6 +59,20 @@ app.delete("/api/employees/:id", async (req, res, next) => {
   }
 });
 
+app.get("/api/employees/search/:search", async (req, res, next) => {
+  try {
+    const name = req.params.search
+    const filteredEmployees = await EmployeeModel.find({ name: { $regex: name, $options: "i" } })
+    if (filteredEmployees.length === 0) {
+      res.status(404).json({ error: "Employee not found" })
+    } else {
+      res.json(filteredEmployees)
+    }
+  } catch (err) {
+    return next(err)
+  }
+})
+
 
 // ------------------------------------------------------------------------------
 
@@ -115,6 +129,9 @@ app.put("/api/equipments/:id", async (req, res, next) => {
   }
 
 })
+
+
+// Main function
 
 const main = async () => {
   await mongoose.connect(MONGO_URL);
