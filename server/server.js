@@ -16,8 +16,14 @@ const app = express();
 app.use(express.json());
 
 app.get("/api/employees/", async (req, res) => {
-  const employees = await EmployeeModel.find().sort({ created: "desc" });
-  return res.json(employees);
+  const page = parseInt(req.query.page) || 1
+  if (page < 1) {
+    res.status(500).json({ error: "Page can't be lower than 1!" })
+  } else {
+    const employees = await EmployeeModel.find().skip((page - 1) * 10).limit(10).sort({ name: 1 });
+    return res.json(employees);
+  }
+
 });
 
 app.get("/api/employees/:id", async (req, res) => {

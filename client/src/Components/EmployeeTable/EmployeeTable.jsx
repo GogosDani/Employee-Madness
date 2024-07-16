@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
 
-const EmployeeTable = ({ employees, onDelete, handlePresent }) => (
+const EmployeeTable = ({ employees, onDelete, handlePresent, setPage, page }) => (
   <div className="EmployeeTable">
     <table>
       <thead>
@@ -34,6 +34,8 @@ const EmployeeTable = ({ employees, onDelete, handlePresent }) => (
         ))}
       </tbody>
     </table>
+    <button onClick={(e) => setPage(prev => prev - 1)} disabled={page === 1 ? (true) : (false)}> PREVIOUS </button>
+    <button onClick={(e) => setPage(prev => prev + 1)}> NEXT </button>
   </div>
 );
 

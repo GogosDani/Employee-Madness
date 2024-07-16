@@ -3,8 +3,8 @@ import Loading from "../Components/Loading";
 import EmployeeTable from "../Components/EmployeeTable";
 import FilterBar from "../Components/FilterBar/FilterBar";
 
-const fetchEmployees = () => {
-  return fetch("/api/employees").then((res) => res.json());
+const fetchEmployees = (page) => {
+  return fetch(`/api/employees/?page=${page}`).then((res) => res.json());
 };
 
 const deleteEmployee = (id) => {
@@ -32,6 +32,7 @@ const EmployeeList = () => {
   const [position, setPosition] = useState("")  // chosen position from the menu
   const [level, setLevel] = useState("")  // chosen level from the menu
   const [sort, setSort] = useState("first name")
+  const [page, setPage] = useState(1)
 
   const handleDelete = (id) => {
     deleteEmployee(id);
@@ -44,12 +45,12 @@ const EmployeeList = () => {
 
 
   useEffect(() => {
-    fetchEmployees()
+    fetchEmployees(page)
       .then((employees) => {
         setLoading(false);
         setEmployees(employees);
       })
-  }, []);
+  }, [page]);
 
   // Sorting and filtering function
   function filteredEmployees() {
@@ -110,7 +111,7 @@ const EmployeeList = () => {
   return (
     <>
       <FilterBar setLevel={setLevel} setPosition={setPosition} setSort={setSort} />
-      <EmployeeTable employees={filteredEmployees()} onDelete={handleDelete} handlePresent={setPresent} />
+      <EmployeeTable employees={filteredEmployees()} onDelete={handleDelete} handlePresent={setPresent} setPage={setPage} page={page} />
     </>
 
 
