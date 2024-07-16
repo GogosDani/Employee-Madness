@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
 
-const EmployeeTable = ({ employees, onDelete }) => (
+const EmployeeTable = ({ employees, onDelete, handlePresent }) => (
   <div className="EmployeeTable">
     <table>
       <thead>
@@ -28,7 +28,7 @@ const EmployeeTable = ({ employees, onDelete }) => (
               </button>
             </td>
             <td>
-              <input type="checkbox" checked={employee.isPresent} />
+              <input type="checkbox" name={employee._id} checked={employee.isPresent} onChange={(e) => handlePresent(employee._id)} />
             </td>
           </tr>
         ))}

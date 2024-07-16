@@ -87,6 +87,19 @@ app.get("/api/employees/missing/all", async (req, res, next) => {       // /empl
   }
 })
 
+app.put("/api/employees/missing/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id
+    const employee = await EmployeeModel.findById(id)
+    employee.isPresent = !employee.isPresent
+    employee.save()
+    res.json(employee)
+  } catch (err) {
+    return next(err)
+  }
+
+})
+
 
 // ------------------------------------------------------------------------------
 

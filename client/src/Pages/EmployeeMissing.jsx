@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react"
 import EmployeeTable from "../Components/EmployeeTable"
 
+const deleteEmployee = (id) => {
+    return fetch(`/api/employees/${id}`, { method: "DELETE" }).then((res) =>
+        res.json()
+    );
+};
+
 export default function EmployeeMissing() {
 
     const [employees, setEmployees] = useState([])
@@ -18,7 +24,28 @@ export default function EmployeeMissing() {
         getMissings()
     }, [])
 
+    async function setPresent(id) {
+        const response = await fetch(`/api/employees/missing/${id}`, {
+            method: "PUT",
+        })
+        console.log(response)
+        if (!response.ok) {
+            console.log("Error while changing the present's value")
+        } else {
+            setEmployees(prev => prev.map(emp => emp._id === id ? { ...emp, isPresent: !emp.isPresent } : { ...emp }))
+        }
+    }
+
+    const handleDelete = (id) => {
+        deleteEmployee(id);
+
+        setEmployees((employees) => {
+            return employees.filter((employee) => employee._id !== id);
+        });
+
+    };
+
     return (
-        <EmployeeTable employees={employees} />
+        <EmployeeTable employees={employees} onDelete={handleDelete} handlePresent={setPresent} />
     )
 }

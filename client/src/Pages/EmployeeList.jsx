@@ -22,9 +22,7 @@ function splitName(name) {
   };
 }
 
-async function setPresentDB(id) {
 
-}
 
 // main function
 
@@ -90,10 +88,20 @@ const EmployeeList = () => {
     return filteredEmployees
   }
 
-  async function setPresent(id) {
-    const data = await setPresentDB(id)
-  }
 
+
+
+  async function setPresent(id) {
+    const response = await fetch(`/api/employees/missing/${id}`, {
+      method: "PUT",
+    })
+    console.log(response)
+    if (!response.ok) {
+      console.log("Error while changing the present's value")
+    } else {
+      setEmployees(prev => prev.map(emp => emp._id === id ? { ...emp, isPresent: !emp.isPresent } : { ...emp }))
+    }
+  }
 
   if (loading) {
     return <Loading />;
