@@ -28,7 +28,7 @@ const EmployeeTable = ({ employees, onDelete }) => (
               </button>
             </td>
             <td>
-              <input type="checkbox" />
+              <input type="checkbox" checked={employee.isPresent} />
             </td>
           </tr>
         ))}

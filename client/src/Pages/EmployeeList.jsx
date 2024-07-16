@@ -22,6 +22,12 @@ function splitName(name) {
   };
 }
 
+async function setPresentDB(id) {
+
+}
+
+// main function
+
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState([])  // every employee, use this array to filters
@@ -84,6 +90,10 @@ const EmployeeList = () => {
     return filteredEmployees
   }
 
+  async function setPresent(id) {
+    const data = await setPresentDB(id)
+  }
+
 
   if (loading) {
     return <Loading />;
@@ -92,7 +102,7 @@ const EmployeeList = () => {
   return (
     <>
       <FilterBar setLevel={setLevel} setPosition={setPosition} setSort={setSort} />
-      <EmployeeTable employees={filteredEmployees()} onDelete={handleDelete} />
+      <EmployeeTable employees={filteredEmployees()} onDelete={handleDelete} handlePresent={setPresent} />
     </>
 
 

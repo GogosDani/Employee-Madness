@@ -73,6 +73,20 @@ app.get("/api/employees/search/:search", async (req, res, next) => {
   }
 })
 
+app.get("/api/employees/missing/all", async (req, res, next) => {       // /employees/missing ???!!
+  try {
+    const missingEmployees = await EmployeeModel.find({ isPresent: false })
+    if (missingEmployees.length === 0) {
+      res.json({ info: "every employee is here!" })
+    } else {
+      res.json(missingEmployees)
+    }
+
+  } catch (err) {
+    return next(err)
+  }
+})
+
 
 // ------------------------------------------------------------------------------
 
