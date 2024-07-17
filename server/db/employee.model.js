@@ -8,6 +8,7 @@ const EmployeeSchema = new Schema({
   level: String,
   position: String,
   isPresent: Boolean,
+  favoriteBrand: mongoose.Schema.Types.ObjectId,
   created: {
     type: Date,
     default: Date.now,
