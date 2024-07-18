@@ -22,7 +22,7 @@ app.get("/api/employees/", async (req, res) => {
   if (page < 1) {
     res.status(500).json({ error: "Page can't be lower than 1!" })
   } else {
-    const employees = await EmployeeModel.find().populate("favoriteBrand").skip((page - 1) * 10).limit(10).sort({ name: 1 });
+    const employees = await EmployeeModel.find().populate("favoriteBrand").sort({ name: 1 }); // .skip((page - 1) * 10).limit(10)
     return res.json(employees);
   }
 

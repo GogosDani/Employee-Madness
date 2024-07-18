@@ -33,6 +33,7 @@ const EmployeeList = () => {
   const [level, setLevel] = useState("")  // chosen level from the menu
   const [sort, setSort] = useState("first name")
   const [page, setPage] = useState(1)
+  const [nameSort, setNameSort] = useState("asc")
 
   const handleDelete = (id) => {
     deleteEmployee(id);
@@ -52,6 +53,26 @@ const EmployeeList = () => {
       })
   }, [page]);
 
+  // sort names by clicking on "name" th
+
+
+
+  useEffect(() => {
+    if (nameSort === "asc") {
+      setEmployees(prev => [...prev].sort((a, b) => a.name.localeCompare(b.name.localeCompare)))
+    } else {
+      setEmployees(prev => [...prev].sort((a, b) => b.name.localeCompare(a.name)))
+    }
+  }, [nameSort])
+
+  function setSorting() {
+    if (nameSort === "asc") {
+      setNameSort("des")
+    } else {
+      setNameSort("asc")
+    }
+  }
+
   // Sorting and filtering function
   function filteredEmployees() {
 
@@ -68,24 +89,24 @@ const EmployeeList = () => {
 
     // sorting logic
 
-    switch (sort) {
-      case "first name":
-        filteredEmployees.sort((a, b) => {
-          return splitName(a.name).first.localeCompare(splitName(b.name).first)
-        })
-        break
-      case "middle name":
-        filteredEmployees.sort((a, b) => {
-          return splitName(b.name).middle.localeCompare(splitName(a.name).middle)
-        })
-        break
-      case "last name":
-        filteredEmployees.sort((a, b) => {
-          return splitName(a.name).last.localeCompare(splitName(b.name).last)
-        })
+    // switch (sort) {
+    //   case "first name":
+    //     filteredEmployees.sort((a, b) => {
+    //       return splitName(a.name).first.localeCompare(splitName(b.name).first)
+    //     })
+    //     break
+    //   case "middle name":
+    //     filteredEmployees.sort((a, b) => {
+    //       return splitName(b.name).middle.localeCompare(splitName(a.name).middle)
+    //     })
+    //     break
+    //   case "last name":
+    //     filteredEmployees.sort((a, b) => {
+    //       return splitName(a.name).last.localeCompare(splitName(b.name).last)
+    //     })
 
 
-    }
+    // }
     return filteredEmployees
   }
 
@@ -111,7 +132,8 @@ const EmployeeList = () => {
   return (
     <>
       <FilterBar setLevel={setLevel} setPosition={setPosition} setSort={setSort} />
-      <EmployeeTable employees={filteredEmployees()} onDelete={handleDelete} handlePresent={setPresent} setPage={setPage} page={page} />
+      <EmployeeTable employees={filteredEmployees()} onDelete={handleDelete} handlePresent={setPresent}
+        setPage={setPage} page={page} nameSorting={setSorting} />
     </>
 
 
