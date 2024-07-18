@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import brands from "../../../../server/populate/brands.json"
 
 const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const [name, setName] = useState(employee?.name ?? "");
   const [level, setLevel] = useState(employee?.level ?? "");
   const [position, setPosition] = useState(employee?.position ?? "");
+  const [favoriteBrand, setBrand] = useState(employee?.favoriteBrand.name ?? "")
+
+
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +18,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
         name,
         level,
         position,
+        favoriteBrand
       });
     }
 
@@ -21,6 +26,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
       name,
       level,
       position,
+      favoriteBrand
     });
   };
 
@@ -56,6 +62,15 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
         />
       </div>
 
+      <div className="control">
+        <label htmlFor="brand"> Brand: </label>
+        <select onChange={(e) => setBrand(e.target.value)}>
+          <option> {favoriteBrand} </option>
+          {brands.map(oneBrand => oneBrand !== favoriteBrand ? (<option key={oneBrand}> {oneBrand} </option>) : (""))}
+
+        </select>
+      </div>
+
       <div className="buttons">
         <button type="submit" disabled={disabled}>
           {employee ? "Update Employee" : "Create Employee"}
@@ -65,7 +80,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
           Cancel
         </button>
       </div>
-    </form>
+    </form >
   );
 };
 

@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const EmployeeModel = require("./db/employee.model");
 const EquipmentModel = require("./db/equipment.model");
 const equipmentModel = require("./db/equipment.model");
+const BrandModel = require("./db/brand.model");
+
 
 const { MONGO_URL, PORT = 8080 } = process.env;
 
@@ -20,19 +22,21 @@ app.get("/api/employees/", async (req, res) => {
   if (page < 1) {
     res.status(500).json({ error: "Page can't be lower than 1!" })
   } else {
-    const employees = await EmployeeModel.find().skip((page - 1) * 10).limit(10).sort({ name: 1 });
+    const employees = await EmployeeModel.find().populate("favoriteBrand").skip((page - 1) * 10).limit(10).sort({ name: 1 });
     return res.json(employees);
   }
 
 });
 
 app.get("/api/employees/:id", async (req, res) => {
-  const employee = await EmployeeModel.findById(req.params.id);
+  const employee = await EmployeeModel.findById(req.params.id).populate("favoriteBrand");
   return res.json(employee);
 });
 
 app.post("/api/employees/", async (req, res, next) => {
   const employee = req.body;
+  const brandId = await BrandModel.findOne({ name: employee.favoriteBrand })
+  employee.favoriteBrand = brandId
 
   try {
     const saved = await EmployeeModel.create(employee);
@@ -44,9 +48,12 @@ app.post("/api/employees/", async (req, res, next) => {
 
 app.patch("/api/employees/:id", async (req, res, next) => {
   try {
+    const updatedEmployee = req.body
+    const brandId = await BrandModel.findOne({ name: updatedEmployee.favoriteBrand })
+    updatedEmployee.favoriteBrand = brandId
     const employee = await EmployeeModel.findOneAndUpdate(
       { _id: req.params.id },
-      { $set: { ...req.body } },
+      { $set: { ...updatedEmployee } },
       { new: true }
     );
     return res.json(employee);
