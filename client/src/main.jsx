@@ -8,6 +8,7 @@ import EmployeeList from "./Pages/EmployeeList";
 import EmployeeCreator from "./Pages/EmployeeCreator";
 import EmployeeUpdater from "./Pages/EmployeeUpdater";
 import EmployeeMissing from "./Pages/EmployeeMissing";
+import TopPaidEmployees from "./Pages/TopPaidEmployees";
 import EquipmentList from "./Pages/EquipmentList";
 import EquipmentCreator from "./Pages/EquipmentCreator";
 import EquipmentUpdater from "./Pages/EquipmentUpdater"
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/missing",
         element: <EmployeeMissing />
+      },
+      {
+        path: "/top-paid",
+        element: <TopPaidEmployees />
       }
     ],
   },

@@ -5,6 +5,7 @@ const EmployeeModel = require("./db/employee.model");
 const EquipmentModel = require("./db/equipment.model");
 const equipmentModel = require("./db/equipment.model");
 const BrandModel = require("./db/brand.model");
+const employeeModel = require("./db/employee.model");
 
 
 const { MONGO_URL, PORT = 8080 } = process.env;
@@ -111,6 +112,15 @@ app.put("/api/employees/missing/:id", async (req, res, next) => {
     return next(err)
   }
 
+})
+
+app.get("/api/employees/top/paid", async (req, res, next) => {
+  try {
+    const topEmployees = await EmployeeModel.find().sort({ salary: -1 }).limit(3)
+    return res.json(topEmployees)
+  } catch (err) {
+    return next(err)
+  }
 })
 
 
