@@ -9,6 +9,10 @@ const EmployeeSchema = new Schema({
   position: String,
   isPresent: Boolean,
   favoriteBrand: { type: mongoose.Schema.Types.ObjectId, ref: "Brand" },
+  startingDate: Date,
+  currentSalary: Number,
+  desiredSalary: Number,
+  favoriteColor: String,
   created: {
     type: Date,
     default: Date.now,

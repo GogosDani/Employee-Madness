@@ -17,12 +17,19 @@ if (!mongoUrl) {
   process.exit(1); // exit the current program
 }
 
+function randomDateGenerator() {
+  const startDate = new Date('2020-01-01').getTime();
+  const endDate = new Date().getTime();
+  const randomTimestamp = Math.floor(Math.random() * (endDate - startDate + 1)) + startDate;
+  const randomDate = new Date(randomTimestamp);
+  return randomDate
+}
+
 const pick = (from) => from[Math.floor(Math.random() * (from.length - 0))];
 
 const populateEmployees = async () => {
   await EmployeeModel.deleteMany({});
   const brandsFromDb = await BrandModel.find({})
-  console.log(brandsFromDb)
 
   const employees = names.map((name) => ({
     name,
@@ -30,6 +37,10 @@ const populateEmployees = async () => {
     position: pick(positions),
     isPresent: false,
     favoriteBrand: pick(brandsFromDb)._id,
+    startingDate: randomDateGenerator(),
+    currentSalary: Math.round(20 + Math.random() * (60 - 20) + 20),
+    desiredSalary: Math.round(Math.random() * (80 - 10) + 10),
+    favoriteColor: "#000000"
   }));
 
   await EmployeeModel.create(...employees);
