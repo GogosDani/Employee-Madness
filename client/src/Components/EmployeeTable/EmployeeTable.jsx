@@ -10,17 +10,23 @@ const EmployeeTable = ({ employees, onDelete, handlePresent, setPage, page, name
           <th>Level</th>
           <th>Position</th>
           <th> Brand </th>
+          <th> Current Salary </th>
+          <th> Desired Salary </th>
+          <th> Starting Date </th>
           <th />
           <th> Present </th>
         </tr>
       </thead>
       <tbody>
         {employees.map((employee) => (
-          <tr key={employee._id}>
+          <tr key={employee._id} style={{ backgroundColor: employee.favoriteColor }}>
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
             <td> {employee.favoriteBrand.name}</td>
+            <td> {employee.currentSalary} </td>
+            <td> {employee.desiredSalary} </td>
+            <td> {employee.startingDate.split("-")[0] + "." + employee.startingDate.split("-")[1] + "." + employee.startingDate.split("-")[2].split("T")[0]} </td>
             <td>
               <Link to={`/update/${employee._id}`}>
                 <button type="button">Update</button>

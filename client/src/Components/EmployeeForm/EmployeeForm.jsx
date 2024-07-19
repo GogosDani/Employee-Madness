@@ -6,7 +6,10 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const [level, setLevel] = useState(employee?.level ?? "");
   const [position, setPosition] = useState(employee?.position ?? "");
   const [favoriteBrand, setBrand] = useState(employee?.favoriteBrand.name ?? "")
-
+  const [currentSalary, setCurrentSalary] = useState(employee?.currentSalary ?? "")
+  const [desiredSalary, setdesiredSalary] = useState(employee?.desiredSalary ?? "")
+  const [favoriteColor, setFavoriteColor] = useState(employee?.favoriteColor ?? "")
+  const [startingDate, setStartingDate] = useState(employee?.startingDate ?? "")
 
 
   const onSubmit = (e) => {
@@ -18,7 +21,11 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
         name,
         level,
         position,
-        favoriteBrand
+        favoriteBrand,
+        currentSalary,
+        desiredSalary,
+        favoriteColor,
+        startingDate
       });
     }
 
@@ -26,7 +33,11 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
       name,
       level,
       position,
-      favoriteBrand
+      favoriteBrand,
+      currentSalary,
+      desiredSalary,
+      favoriteColor,
+      startingDate
     });
   };
 
@@ -69,6 +80,26 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
           {brands.map(oneBrand => oneBrand !== favoriteBrand ? (<option key={oneBrand}> {oneBrand} </option>) : (""))}
 
         </select>
+      </div>
+
+      <div className="control">
+        <label htmlFor="currentSalary"> Current Salary: </label>
+        <input value={currentSalary} type="number" id="currentSalary" onChange={(e) => setCurrentSalary(e.target.value)}></input>
+      </div>
+
+      <div className="control">
+        <label htmlFor="desiredSalary"> Desired Salary: </label>
+        <input value={desiredSalary} type="number" id="desiredSalary" onChange={(e) => setdesiredSalary(e.target.value)}></input>
+      </div>
+
+      <div className="cotrol">
+        <label htmlFor="favoriteColor"> Favorite Color: </label>
+        <input value={favoriteColor} type="color" id="favoriteColor" onChange={(e) => setFavoriteColor(e.target.value)}></input>
+      </div>
+
+      <div className="control">
+        <label htmlFor="startingDate"> Starting Date: </label>
+        <input value={startingDate} type="date" id="startingDate" onChange={(e) => setStartingDate(e.target.value)}></input>
       </div>
 
       <div className="buttons">
