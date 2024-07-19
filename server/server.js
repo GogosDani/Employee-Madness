@@ -6,6 +6,7 @@ const EquipmentModel = require("./db/equipment.model");
 const equipmentModel = require("./db/equipment.model");
 const BrandModel = require("./db/brand.model");
 const employeeModel = require("./db/employee.model");
+const ToolsModel = require("./db/tools.model")
 
 
 const { MONGO_URL, PORT = 8080 } = process.env;
@@ -180,6 +181,27 @@ app.put("/api/equipments/:id", async (req, res, next) => {
 
 })
 
+
+// Tools
+
+app.get("/api/tools", async (req, res, next) => {
+  try {
+    const tools = await ToolsModel.find({})
+    return res.json(tools)
+  } catch (err) {
+    return next(err)
+  }
+})
+
+app.post("/api/tools", async (req, res, next) => {
+  try {
+    const newTool = req.body
+    await ToolsModel.create(newTool)
+    res.json({ success: true })
+  } catch (err) {
+    return next(err)
+  }
+})
 
 // Main function
 

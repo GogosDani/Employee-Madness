@@ -7,23 +7,29 @@ const Layout = (props) => (
     <nav>
       <ul>
         <li className="grow">
-          {props.page === "employee" ? (
+          {props.page === "employee" || props.page === "tools" && (
             <Link to="/">Employees</Link>
-          ) : (
+          )}
+          {props.page === "equipment" && (
             <Link to="/equipments">Equipments</Link>
           )}
 
+
+
         </li>
         <li>
-          {props.page === "employee" ? (
+          {props.page === "employee" && (
             <Link to="/create">
               <button type="button">Create Employee</button>
             </Link>
-          ) : (
+          )}
+          {props.page === "equipment" && (
             <Link to="/equipments/create">
               <button type="button">Create Equipment</button>
             </Link>
           )}
+
+
 
         </li>
       </ul>

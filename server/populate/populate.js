@@ -7,8 +7,10 @@ const names = require("./names.json");
 const levels = require("./levels.json");
 const positions = require("./positions.json");
 const brands = require("./brands.json")
+const tools = require("./tools.json")
 const EmployeeModel = require("../db/employee.model");
 const BrandModel = require("../db/brand.model");
+const ToolsModel = require("../db/tools.model")
 
 const mongoUrl = process.env.MONGO_URL;
 
@@ -16,6 +18,7 @@ if (!mongoUrl) {
   console.error("Missing MONGO_URL environment variable");
   process.exit(1); // exit the current program
 }
+
 
 function randomDateGenerator() {
   const startDate = new Date('2020-01-01').getTime();
@@ -55,11 +58,18 @@ async function populateBrands() {
   console.log("Brands created!")
 }
 
+async function populateTools() {
+  await ToolsModel.deleteMany({})
+  tools.forEach(tool => ToolsModel.create(tool))
+  console.log("Tools created!")
+}
+
 const main = async () => {
   await mongoose.connect(mongoUrl);
 
   await populateBrands()
   await populateEmployees();
+  await populateTools()
 
   await mongoose.disconnect();
 };

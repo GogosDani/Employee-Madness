@@ -12,6 +12,7 @@ import TopPaidEmployees from "./Pages/TopPaidEmployees";
 import EquipmentList from "./Pages/EquipmentList";
 import EquipmentCreator from "./Pages/EquipmentCreator";
 import EquipmentUpdater from "./Pages/EquipmentUpdater"
+import Tools from "./Pages/Tools"
 
 import "./main.css";
 import TableTest from "./Pages/TableTest";
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: "/top-paid",
         element: <TopPaidEmployees />
-      }
+      },
     ],
   },
   {
@@ -77,6 +78,17 @@ const router = createBrowserRouter([
         element: <EquipmentUpdater />
       },
 
+    ]
+  },
+  {
+    path: "tools",
+    element: <Layout page={"tools"} />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <Tools />
+      },
     ]
   }
 ]);
