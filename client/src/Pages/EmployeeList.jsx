@@ -28,12 +28,13 @@ function splitName(name) {
 
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
-  const [employees, setEmployees] = useState([])  // every employee, use this array to filters
+  const [employees, setEmployees] = useState([])
   const [position, setPosition] = useState("")  // chosen position from the menu
   const [level, setLevel] = useState("")  // chosen level from the menu
   const [sort, setSort] = useState("first name")
   const [page, setPage] = useState(1)
   const [nameSort, setNameSort] = useState("asc")
+  const [deleteEmpId, setDeleteEmpId] = useState("")
 
   const handleDelete = (id) => {
     deleteEmployee(id);
@@ -133,7 +134,7 @@ const EmployeeList = () => {
     <>
       <FilterBar setLevel={setLevel} setPosition={setPosition} setSort={setSort} />
       <EmployeeTable employees={filteredEmployees()} onDelete={handleDelete} handlePresent={setPresent}
-        setPage={setPage} page={page} nameSorting={setSorting} />
+        setPage={setPage} page={page} nameSorting={setSorting} deleteEmpId={deleteEmpId} setDeleteEmpId={setDeleteEmpId} />
     </>
 
 

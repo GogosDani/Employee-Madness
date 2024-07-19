@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./EmployeeTable.css";
 
-const EmployeeTable = ({ employees, onDelete, handlePresent, setPage, page, nameSorting }) => (
+const EmployeeTable = ({ employees, onDelete, handlePresent, setPage, page, nameSorting, deleteEmpId, setDeleteEmpId }) => (
   <div className="EmployeeTable">
     <table>
       <thead>
@@ -20,15 +20,21 @@ const EmployeeTable = ({ employees, onDelete, handlePresent, setPage, page, name
             <td>{employee.name}</td>
             <td>{employee.level}</td>
             <td>{employee.position}</td>
-            {console.log(employee)}
             <td> {employee.favoriteBrand.name}</td>
             <td>
               <Link to={`/update/${employee._id}`}>
                 <button type="button">Update</button>
               </Link>
-              <button type="button" onClick={() => onDelete(employee._id)}>
-                Delete
-              </button>
+
+              {deleteEmpId === employee._id ? (
+                <>
+                  <p> Do you want to delete? </p>
+                  <button onClick={(e) => onDelete(employee._id)}> Delete </button>
+                  <button onClick={(e) => setDeleteEmpId("")}> Cancel </button>
+                </>
+              ) : (
+                <button onClick={(e) => setDeleteEmpId(employee._id)}> Delete </button>
+              )}
             </td>
             <td>
               <input type="checkbox" name={employee._id} checked={employee.isPresent} onChange={(e) => handlePresent(employee._id)} />
