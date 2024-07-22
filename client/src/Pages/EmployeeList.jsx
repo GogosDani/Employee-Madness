@@ -90,24 +90,24 @@ const EmployeeList = () => {
 
     // sorting logic
 
-    // switch (sort) {
-    //   case "first name":
-    //     filteredEmployees.sort((a, b) => {
-    //       return splitName(a.name).first.localeCompare(splitName(b.name).first)
-    //     })
-    //     break
-    //   case "middle name":
-    //     filteredEmployees.sort((a, b) => {
-    //       return splitName(b.name).middle.localeCompare(splitName(a.name).middle)
-    //     })
-    //     break
-    //   case "last name":
-    //     filteredEmployees.sort((a, b) => {
-    //       return splitName(a.name).last.localeCompare(splitName(b.name).last)
-    //     })
+    switch (sort) {
+      case "first name":
+        filteredEmployees.sort((a, b) => {
+          return splitName(a.name).first.localeCompare(splitName(b.name).first)
+        })
+        break
+      case "middle name":
+        filteredEmployees.sort((a, b) => {
+          return splitName(b.name).middle.localeCompare(splitName(a.name).middle)
+        })
+        break
+      case "last name":
+        filteredEmployees.sort((a, b) => {
+          return splitName(a.name).last.localeCompare(splitName(b.name).last)
+        })
 
 
-    // }
+    }
     return filteredEmployees
   }
 
