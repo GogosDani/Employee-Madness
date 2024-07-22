@@ -15,6 +15,7 @@ const deleteEmployee = (id) => {
 
 function splitName(name) {
   const parts = name.split(" ");
+  console.log(parts[parts.length - 1])
   return {
     first: parts[0],
     middle: parts.length === 3 ? parts[1] : "",
@@ -105,8 +106,13 @@ const EmployeeList = () => {
         filteredEmployees.sort((a, b) => {
           return splitName(a.name).last.localeCompare(splitName(b.name).last)
         })
-
-
+        break
+      case "level":
+        filteredEmployees.sort((a, b) => a.level.localeCompare(b.level))
+        break
+      case "position":
+        filteredEmployees.sort((a, b) => a.position.localeCompare(b.position))
+        break
     }
 
 
