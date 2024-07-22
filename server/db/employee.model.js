@@ -13,6 +13,7 @@ const EmployeeSchema = new Schema({
   currentSalary: Number,
   desiredSalary: Number,
   favoriteColor: String,
+  kittens: Array,
   created: {
     type: Date,
     default: Date.now,

@@ -203,6 +203,20 @@ app.post("/api/tools", async (req, res, next) => {
   }
 })
 
+
+// cats
+
+app.post("/api/employees/cats/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id
+    const newCat = req.body
+    await EmployeeModel.findByIdAndUpdate(id, { $push: { kittens: newCat } })
+    res.json({ success: true })
+  } catch (err) {
+    return next(err)
+  }
+})
+
 // Main function
 
 const main = async () => {

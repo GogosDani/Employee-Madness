@@ -13,6 +13,7 @@ import EquipmentList from "./Pages/EquipmentList";
 import EquipmentCreator from "./Pages/EquipmentCreator";
 import EquipmentUpdater from "./Pages/EquipmentUpdater"
 import Tools from "./Pages/Tools"
+import ShowCats from "./Pages/ShowCats";
 
 import "./main.css";
 import TableTest from "./Pages/TableTest";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         path: "/top-paid",
         element: <TopPaidEmployees />
       },
+      {
+        path: "/kitten/:id",
+        element: <ShowCats />
+      }
     ],
   },
   {
@@ -76,7 +81,7 @@ const router = createBrowserRouter([
       {
         path: "/equipments/edit/:id",
         element: <EquipmentUpdater />
-      },
+      }
 
     ]
   },

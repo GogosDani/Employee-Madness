@@ -15,6 +15,7 @@ const EmployeeTable = ({ employees, onDelete, handlePresent, setPage, page, name
           <th> Starting Date </th>
           <th />
           <th> Present </th>
+          <th> Add cat </th>
         </tr>
       </thead>
       <tbody>
@@ -44,6 +45,11 @@ const EmployeeTable = ({ employees, onDelete, handlePresent, setPage, page, name
             </td>
             <td>
               <input type="checkbox" name={employee._id} checked={employee.isPresent} onChange={(e) => handlePresent(employee._id)} />
+            </td>
+            <td>
+              <Link to={`/kitten/${employee._id}`}>
+                <button> Add Cat </button>
+              </Link>
             </td>
           </tr>
         ))}
