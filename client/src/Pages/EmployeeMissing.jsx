@@ -33,7 +33,7 @@ export default function EmployeeMissing() {
         if (!response.ok) {
             console.log("Error while changing the present's value")
         } else {
-            setEmployees(prev => prev.map(emp => emp._id === id ? { ...emp, isPresent: !emp.isPresent } : { ...emp }))
+            setEmployees(prev => prev.filter(emp => emp._id !== id))
         }
     }
 

@@ -49,8 +49,16 @@ const EmployeeTable = ({ employees, onDelete, handlePresent, setPage, page, name
         ))}
       </tbody>
     </table>
-    <button onClick={(e) => setPage(prev => prev - 1)} disabled={page === 1 ? (true) : (false)}> PREVIOUS </button>
-    <button onClick={(e) => setPage(prev => prev + 1)} disabled={10 * page >= allEmployee.length}> NEXT </button>
+    {allEmployee ? (
+      <>
+        <button onClick={(e) => setPage(prev => prev - 1)} disabled={page === 1 ? (true) : (false)}> PREVIOUS </button>
+        <button onClick={(e) => setPage(prev => prev + 1)} disabled={10 * page >= allEmployee.length}> NEXT </button>
+      </>
+
+    ) : (
+      ""
+    )}
+
   </div>
 );
 
