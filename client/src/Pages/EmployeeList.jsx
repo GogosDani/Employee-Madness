@@ -108,7 +108,9 @@ const EmployeeList = () => {
 
 
     }
-    return filteredEmployees
+
+
+    return filteredEmployees.slice((page - 1) * 10, page * 10)
   }
 
 
@@ -133,8 +135,15 @@ const EmployeeList = () => {
   return (
     <>
       <FilterBar setLevel={setLevel} setPosition={setPosition} setSort={setSort} />
-      <EmployeeTable employees={filteredEmployees()} onDelete={handleDelete} handlePresent={setPresent}
-        setPage={setPage} page={page} nameSorting={setSorting} deleteEmpId={deleteEmpId} setDeleteEmpId={setDeleteEmpId} />
+      <EmployeeTable employees={filteredEmployees()} onDelete={handleDelete}
+        handlePresent={setPresent}
+        setPage={setPage}
+        page={page}
+        nameSorting={setSorting}
+        deleteEmpId={deleteEmpId}
+        setDeleteEmpId={setDeleteEmpId}
+        allEmployee={employees}
+      />
     </>
 
 
