@@ -10,6 +10,7 @@ const deleteEmployee = (id) => {
 export default function EmployeeMissing() {
 
     const [employees, setEmployees] = useState([])
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         async function getMissings() {
@@ -46,6 +47,6 @@ export default function EmployeeMissing() {
     };
 
     return (
-        <EmployeeTable employees={employees} onDelete={handleDelete} handlePresent={setPresent} />
+        <EmployeeTable employees={employees.slice(10 * (page - 1), page * 10)} allEmployee={employees} onDelete={handleDelete} handlePresent={setPresent} page={page} setPage={setPage} />
     )
 }
