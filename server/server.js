@@ -7,6 +7,7 @@ const equipmentModel = require("./db/equipment.model");
 const BrandModel = require("./db/brand.model");
 const employeeModel = require("./db/employee.model");
 const ToolsModel = require("./db/tools.model")
+const KittenModel = require("./db/kitten.model")
 
 
 const { MONGO_URL, PORT = 8080 } = process.env;
@@ -211,11 +212,14 @@ app.post("/api/employees/cats/:id", async (req, res, next) => {
     const id = req.params.id
     const newCat = req.body
     await EmployeeModel.findByIdAndUpdate(id, { $push: { kittens: newCat } })
+    await KittenModel.create({ name: newCat.name, weight: newCat.weight, employee: id })
     res.json({ success: true })
   } catch (err) {
     return next(err)
   }
 })
+
+
 
 // Main function
 
