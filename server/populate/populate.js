@@ -44,7 +44,8 @@ const populateEmployees = async () => {
     currentSalary: Math.round(20 + Math.random() * (60 - 20) + 20),
     desiredSalary: Math.round(Math.random() * (80 - 10) + 10),
     favoriteColor: "#E9FF33",
-    kittens: []
+    kittens: [],
+    boardGame: ""
   }));
 
   await EmployeeModel.create(...employees);

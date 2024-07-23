@@ -8,6 +8,7 @@ const BrandModel = require("./db/brand.model");
 const employeeModel = require("./db/employee.model");
 const ToolsModel = require("./db/tools.model")
 const KittenModel = require("./db/kitten.model")
+const GamesModel = require("./db/boardgames.model")
 
 
 const { MONGO_URL, PORT = 8080 } = process.env;
@@ -219,7 +220,27 @@ app.post("/api/employees/cats/:id", async (req, res, next) => {
   }
 })
 
+// games
 
+app.post("/api/games", async (req, res, next) => {
+  try {
+    const newGame = req.body
+    await GamesModel.create(newGame)
+    res.json({ success: true })
+  } catch (err) {
+    return next(err)
+  }
+
+})
+
+app.get("/api/games", async (req, res, next) => {
+  try {
+    const games = await GamesModel.find({})
+    res.json(games)
+  } catch (err) {
+    return next(err)
+  }
+})
 
 // Main function
 

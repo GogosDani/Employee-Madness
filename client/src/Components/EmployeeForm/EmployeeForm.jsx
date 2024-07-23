@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import brands from "../../../../server/populate/brands.json"
 
-const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
+const EmployeeForm = ({ onSave, disabled, employee, onCancel, games }) => {
   const [name, setName] = useState(employee?.name ?? "");
   const [level, setLevel] = useState(employee?.level ?? "");
   const [position, setPosition] = useState(employee?.position ?? "");
@@ -10,6 +10,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const [desiredSalary, setdesiredSalary] = useState(employee?.desiredSalary ?? "")
   const [favoriteColor, setFavoriteColor] = useState(employee?.favoriteColor ?? "")
   const [startingDate, setStartingDate] = useState(employee?.startingDate ?? "")
+  const [boardGame, setBoardGame] = useState(employee?.boardGame ?? "")
 
 
   const onSubmit = (e) => {
@@ -25,7 +26,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
         currentSalary,
         desiredSalary,
         favoriteColor,
-        startingDate
+        startingDate,
+        boardGame
       });
     }
 
@@ -37,7 +39,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
       currentSalary,
       desiredSalary,
       favoriteColor,
-      startingDate
+      startingDate,
+      boardGame
     });
   };
 
@@ -100,6 +103,13 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
       <div className="control">
         <label htmlFor="startingDate"> Starting Date: </label>
         <input value={startingDate} type="date" id="startingDate" onChange={(e) => setStartingDate(e.target.value)}></input>
+      </div>
+
+      <div className="control">
+        <label htmlFor="game"> Board Game: </label>
+        <select onChange={(e) => setBoardGame(e.target.value)}>
+          {games.map(game => <option key={game._id}> {game.name} </option>)}
+        </select>
       </div>
 
       <div className="buttons">

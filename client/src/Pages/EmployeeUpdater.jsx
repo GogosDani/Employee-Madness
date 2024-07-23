@@ -18,6 +18,8 @@ const fetchEmployee = (id) => {
   return fetch(`/api/employees/${id}`).then((res) => res.json());
 };
 
+
+
 const EmployeeUpdater = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,6 +27,17 @@ const EmployeeUpdater = () => {
   const [employee, setEmployee] = useState(null);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [employeeLoading, setEmployeeLoading] = useState(true);
+  const [games, setGames] = useState([])
+
+
+  useEffect(() => {
+    async function fetchGames() {
+      const response = await fetch("/api/games")
+      const data = await response.json()
+      setGames(data)
+    }
+    fetchGames()
+  }, [])
 
   useEffect(() => {
     setEmployeeLoading(true);
@@ -33,7 +46,10 @@ const EmployeeUpdater = () => {
         setEmployee(employee);
         setEmployeeLoading(false);
       });
+
   }, [id]);
+
+
 
   const handleUpdateEmployee = (employee) => {
     setUpdateLoading(true);
@@ -54,6 +70,7 @@ const EmployeeUpdater = () => {
       onSave={handleUpdateEmployee}
       disabled={updateLoading}
       onCancel={() => navigate("/")}
+      games={games}
     />
   );
 };

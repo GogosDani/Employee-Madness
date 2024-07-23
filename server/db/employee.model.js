@@ -14,6 +14,7 @@ const EmployeeSchema = new Schema({
   desiredSalary: Number,
   favoriteColor: String,
   kittens: Array,
+  boardGame: String,
   created: {
     type: Date,
     default: Date.now,

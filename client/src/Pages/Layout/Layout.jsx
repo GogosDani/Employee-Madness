@@ -7,9 +7,9 @@ const Layout = (props) => (
     <nav>
       <ul>
         <li className="grow">
-          {props.page === "employee" && (
-            <Link to="/">Employees</Link>
-          )}
+
+          <Link to="/">Employees</Link>
+
           {props.page === "equipment" && (
             <Link to="/equipments">Equipments</Link>
           )}

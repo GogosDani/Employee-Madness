@@ -14,6 +14,7 @@ import EquipmentCreator from "./Pages/EquipmentCreator";
 import EquipmentUpdater from "./Pages/EquipmentUpdater"
 import Tools from "./Pages/Tools"
 import ShowCats from "./Pages/ShowCats";
+import BoardGame from "./Pages/BoardGame";
 
 import "./main.css";
 import TableTest from "./Pages/TableTest";
@@ -94,6 +95,17 @@ const router = createBrowserRouter([
         path: "",
         element: <Tools />
       },
+    ]
+  },
+  {
+    path: "games",
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <BoardGame />
+      }
     ]
   }
 ]);
