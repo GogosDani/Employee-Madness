@@ -1,5 +1,38 @@
 # Employee Data
 
+## About The Project
+
+Employee Madness is a system for managing employees, allowing users to add, remove, and update employee records.
+
+### Key Features:
+
+Marking employees as present and viewing absent employees on a dedicated page.
+Assigning a favorite color to each employee, which sets their background color.
+Filtering employees by level and position, as well as sorting them by name.
+Viewing dedicated pages for employees with the most years of experience or highest salaries, showing the top X employees based on these criteria.
+
+## Built With
+
+- **Backend**: [Node.js](https://nodejs.org/en) (with Express.js)
+- **Frontend**: [React.js](https://reactjs.org/)
+
+---
+
+## Screenshots
+
+![image](https://github.com/user-attachments/assets/b13c8177-bdf3-4f3f-9fd2-f5d47793ea98)
+
+---
+
+## Prerequisites
+
+Make sure you have installed:
+ [Node.js](https://nodejs.org/)
+
+---
+
+## Start the App
+
 ## Server side
 
 ### Install dependencies
