@@ -65,9 +65,9 @@ async function populateBrands() {
 }
 
 async function populateTools() {
-  await ToolsModel.deleteMany({})
-  tools.forEach(tool => ToolsModel.create(tool))
-  console.log("Tools created!")
+  await ToolsModel.deleteMany({});
+  await Promise.all(tools.map(tool => ToolsModel.create(tool)));
+  console.log("Tools created!");
 }
 
 const main = async () => {
