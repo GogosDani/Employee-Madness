@@ -90,7 +90,7 @@ app.get("/api/employees/search/:search", async (req, res, next) => {
   }
 })
 
-app.get("/api/employees/missing/all", async (req, res, next) => {       // /employees/missing ???!!
+app.get("/api/employees/missing/all", async (req, res, next) => {
   try {
     const missingEmployees = await EmployeeModel.find({ isPresent: false })
     if (missingEmployees.length === 0) {
@@ -242,6 +242,39 @@ app.get("/api/games", async (req, res, next) => {
   }
 })
 
+// years of experience
+
+app.get("/api/employees/years/:years/:sort", async (req, res, next) => {
+  try {
+    const yearsOfExperience = req.params.years
+    const sortType = req.params.sort
+    let currentEmployees
+    if (sortType === "asc") {
+      currentEmployees = await EmployeeModel.find({ yearsOfExperience: { $gte: yearsOfExperience } }).sort({ name: sortType })
+    } else {
+      currentEmployees = await EmployeeModel.find({ yearsOfExperience: { $gte: yearsOfExperience } }).sort({ name: sortType })
+    }
+
+    if (currentEmployees.length === 0) {
+      throw new Error("Couldn't fint employees")
+    } else {
+      res.json(currentEmployees)
+    }
+  } catch (err) {
+    return (next(err))
+  }
+})
+
+app.get("/api/employees/color/:color", async (req, res, next) => {
+  try {
+    let currentColor = req.params.color;
+    let currentEmployees = await EmployeeModel.find({ color: currentColor });
+    res.json(currentEmployees);
+  } catch (err) {
+    return (next(err))
+  }
+})
+
 // Main function
 
 const main = async () => {
@@ -257,3 +290,6 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+
+
+

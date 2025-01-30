@@ -15,7 +15,8 @@ import EquipmentUpdater from "./Pages/EquipmentUpdater"
 import Tools from "./Pages/Tools"
 import ShowCats from "./Pages/ShowCats";
 import BoardGame from "./Pages/BoardGame";
-
+import YearsOfExperience from "./Pages/YearsOfExperience";
+import Color from "./Pages/color";
 import "./main.css";
 import TableTest from "./Pages/TableTest";
 import FormTest from "./Pages/FormTest";
@@ -63,7 +64,15 @@ const router = createBrowserRouter([
       {
         path: "/kitten/:id",
         element: <ShowCats />
-      }
+      },
+      {
+        path: "/years-of-experience/:year",
+        element: <YearsOfExperience />
+      },
+      {
+        path: "/color/:color",
+        element: <Color />,
+      },
     ],
   },
   {

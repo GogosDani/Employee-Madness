@@ -15,10 +15,12 @@ const EmployeeSchema = new Schema({
   favoriteColor: String,
   kittens: Array,
   boardGame: String,
+  yearsOfExperience: { type: Number, },
   created: {
     type: Date,
     default: Date.now,
   },
+  color: String
 });
 
 module.exports = mongoose.model("Employee", EmployeeSchema);

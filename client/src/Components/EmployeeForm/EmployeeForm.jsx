@@ -11,6 +11,7 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, games }) => {
   const [favoriteColor, setFavoriteColor] = useState(employee?.favoriteColor ?? "")
   const [startingDate, setStartingDate] = useState(employee?.startingDate ?? "")
   const [boardGame, setBoardGame] = useState(employee?.boardGame ?? "")
+  const [yearsOfExperience, setYearsOfExperience] = useState(employee?.yearsOfExperience ?? 0)
 
 
   const onSubmit = (e) => {
@@ -27,7 +28,8 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, games }) => {
         desiredSalary,
         favoriteColor,
         startingDate,
-        boardGame
+        boardGame,
+        yearsOfExperience
       });
     }
 
@@ -40,7 +42,9 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, games }) => {
       desiredSalary,
       favoriteColor,
       startingDate,
-      boardGame
+      boardGame,
+      yearsOfExperience
+
     });
   };
 
@@ -65,6 +69,18 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel, games }) => {
           id="level"
         />
       </div>
+
+
+      {level !== "Junior" && (
+        <div className="control">
+          <label htmlFor="yearsOfExperience"> Years of experience: </label>
+          <input id="yearsOfExperience" type="number" value={level} onChange={(e) => setYearsOfExperience(e.target.value)} />
+        </div>
+      )
+
+      }
+
+
 
       <div className="control">
         <label htmlFor="position">Position:</label>

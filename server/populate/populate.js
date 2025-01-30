@@ -10,7 +10,8 @@ const brands = require("./brands.json")
 const tools = require("./tools.json")
 const EmployeeModel = require("../db/employee.model");
 const BrandModel = require("../db/brand.model");
-const ToolsModel = require("../db/tools.model")
+const ToolsModel = require("../db/tools.model");
+const colors = require("./colors.json");
 
 const mongoUrl = process.env.MONGO_URL;
 
@@ -18,6 +19,7 @@ if (!mongoUrl) {
   console.error("Missing MONGO_URL environment variable");
   process.exit(1); // exit the current program
 }
+
 
 
 function randomDateGenerator() {
@@ -45,7 +47,9 @@ const populateEmployees = async () => {
     desiredSalary: Math.round(Math.random() * (80 - 10) + 10),
     favoriteColor: "#E9FF33",
     kittens: [],
-    boardGame: ""
+    boardGame: "",
+    yearsOfExperience: Math.round((Math.random() * 10)),
+    color: pick(colors)
   }));
 
   await EmployeeModel.create(...employees);
