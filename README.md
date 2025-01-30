@@ -6,10 +6,10 @@ Employee Madness is a system for managing employees, allowing users to add, remo
 
 ### Key Features:
 
-Marking employees as present and viewing absent employees on a dedicated page.
-Assigning a favorite color to each employee, which sets their background color.
-Filtering employees by level and position, as well as sorting them by name.
-Viewing dedicated pages for employees with the most years of experience or highest salaries, showing the top X employees based on these criteria.
+- Marking employees as present and viewing absent employees on a dedicated page.
+- Assigning a favorite color to each employee, which sets their background color.
+- Filtering employees by level and position, as well as sorting them by name.
+- Viewing dedicated pages for employees with the most years of experience or highest salaries, showing the top X employees based on these criteria.
 
 ## Built With
 
